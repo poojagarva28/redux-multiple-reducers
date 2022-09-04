@@ -4,10 +4,21 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
-import { RootReducer } from "./RootReducer";
+import {
+  productReducer,
+  accountReducer,
+  dashboardreducer,
+} from "./RootReducer";
 import { Provider } from "react-redux";
+import { combineReducers } from "redux";
 
-const store = configureStore({ reducer: RootReducer });
+let masterReducer = combineReducers({
+  account: accountReducer,
+  dashboard: dashboardreducer,
+  products: productReducer,
+});
+
+const store = configureStore({ reducer: masterReducer });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
